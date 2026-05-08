@@ -5,3 +5,7 @@ dist
 .env
 .env.local
 .vite
+
+# Local-only presentation assets — never push these
+*.pptx
+_pres/
