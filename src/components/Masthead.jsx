@@ -1,6 +1,10 @@
 import { useEffect } from 'react';
+import { useT } from '../i18n/index.jsx';
+import LanguageToggle from './LanguageToggle.jsx';
 
 export default function Masthead() {
+  const t = useT();
+
   useEffect(() => {
     const handler = (e) => {
       const link = e.target.closest('a[href^="#"]');
@@ -21,16 +25,19 @@ export default function Masthead() {
   return (
     <header className="masthead" role="banner">
       <div className="masthead-inner">
-        <a href="#top" className="masthead-mark" aria-label="Top of page">
-          V&nbsp;·&nbsp;A Personal Page
+        <a href="#top" className="masthead-mark" aria-label={t.masthead.topAria}>
+          {t.masthead.mark}
         </a>
-        <nav className="masthead-nav" aria-label="Sections">
-          <a href="#prologue">Prologue</a>
-          <a href="#career">Career</a>
-          <a href="#implements">Implements</a>
-          <a href="#hobbies">Hobbies</a>
-          <a href="#reading">Reading</a>
-        </nav>
+        <div className="masthead-end">
+          <nav className="masthead-nav" aria-label={t.masthead.sectionsAria}>
+            <a href="#prologue">{t.masthead.nav.prologue}</a>
+            <a href="#career">{t.masthead.nav.career}</a>
+            <a href="#implements">{t.masthead.nav.implements}</a>
+            <a href="#hobbies">{t.masthead.nav.hobbies}</a>
+            <a href="#reading">{t.masthead.nav.reading}</a>
+          </nav>
+          <LanguageToggle />
+        </div>
       </div>
     </header>
   );

@@ -1,28 +1,7 @@
 import Reveal from './Reveal.jsx';
+import { useT } from '../i18n/index.jsx';
 
-const COLUMNS = [
-  {
-    num: 'i.',
-    title: 'Laravel',
-    titleEnd: 'Vue',
-    chips: ['PHP', 'Laravel', 'Eloquent', 'Blade', 'Vue 3', 'Pinia', 'Vite'],
-  },
-  {
-    num: 'ii.',
-    title: 'Node',
-    titleEnd: 'React',
-    chips: ['Node.js', 'Express', 'TypeScript', 'React', 'Next.js', 'Tailwind'],
-  },
-];
-
-const ROW = {
-  num: 'iii.',
-  title: 'Databases',
-  titleEnd: 'Tooling',
-  chips: ['MariaDB', 'MySQL', 'XAMPP', 'Git', 'Docker', 'Postman'],
-};
-
-function StackBlock({ data, isRow = false }) {
+function StackBlock({ data, ariaLabel, isRow = false }) {
   return (
     <article className={isRow ? 'stack-row' : 'stack-col'}>
       <header className="stack-col-head">
@@ -31,7 +10,7 @@ function StackBlock({ data, isRow = false }) {
           {data.title} <span className="amp">&amp;</span> {data.titleEnd}
         </h3>
       </header>
-      <ul className="chips" aria-label={`${data.title} ${data.titleEnd} stack`}>
+      <ul className="chips" aria-label={ariaLabel}>
         {data.chips.map((c) => (
           <li key={c}>{c}</li>
         ))}
@@ -41,27 +20,34 @@ function StackBlock({ data, isRow = false }) {
 }
 
 export default function Stack() {
+  const t = useT();
+  const aria = t.stack.chipsAria;
+
   return (
     <section className="chapter" id="implements" aria-labelledby="implements-title">
       <Reveal className="chapter-head">
-        <span className="chapter-num">III.</span>
+        <span className="chapter-num">{t.stack.eyebrow}</span>
         <h2 className="chapter-title" id="implements-title">
-          <em>The</em> implements
+          {t.stack.title}
         </h2>
       </Reveal>
 
       <Reveal as="p" className="prose-aside">
-        Two ecosystems I work in fluently — and the small constellation of databases that anchor them.
+        {t.stack.aside}
       </Reveal>
 
       <div className="stack">
-        {COLUMNS.map((c, i) => (
+        {t.stack.columns.map((c, i) => (
           <Reveal key={c.num} delay={i * 0.08}>
-            <StackBlock data={c} />
+            <StackBlock data={c} ariaLabel={aria(c.title, c.titleEnd)} />
           </Reveal>
         ))}
         <Reveal className="stack-row-wrap" delay={0.16}>
-          <StackBlock data={ROW} isRow />
+          <StackBlock
+            data={t.stack.row}
+            ariaLabel={aria(t.stack.row.title, t.stack.row.titleEnd)}
+            isRow
+          />
         </Reveal>
       </div>
     </section>

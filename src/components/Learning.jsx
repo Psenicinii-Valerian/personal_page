@@ -1,19 +1,20 @@
 import Reveal from './Reveal.jsx';
+import { useT } from '../i18n/index.jsx';
 
 export default function Learning() {
+  const t = useT();
+
   return (
     <section className="chapter chapter--narrow" id="learning" aria-labelledby="learning-title">
       <Reveal className="chapter-head">
-        <span className="chapter-num">V.</span>
+        <span className="chapter-num">{t.learning.eyebrow}</span>
         <h2 className="chapter-title" id="learning-title">
-          <em>Always</em> a student
+          {t.learning.title}
         </h2>
       </Reveal>
 
       <Reveal className="prose">
-        <p>
-          I keep my evenings open for tech videos — a long walk, headphones in, a deep-dive on systems design or a release-notes recap. The field moves quickly enough that the best engineers are always students. I would rather be the student than the relic.
-        </p>
+        <p>{t.learning.body}</p>
       </Reveal>
     </section>
   );

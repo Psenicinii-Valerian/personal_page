@@ -144,6 +144,67 @@ img, svg { max-width: 100%; display: block; }
   transform-origin: left;
 }
 
+/* the right cluster: nav + language toggle */
+.masthead-end {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem 1.75rem;
+  flex-wrap: wrap;
+}
+
+.lang-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding-left: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+.lang-toggle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 1px;
+  background: var(--rule-faint);
+}
+.lang-toggle-option {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 0.25rem 0;
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--ink-faint);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.lang-toggle-option:hover { color: var(--tea); }
+.lang-toggle-option.is-active {
+  color: var(--ink);
+  font-variation-settings: "WONK" 1;
+}
+.lang-toggle-option.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: var(--tea);
+}
+.lang-toggle-sep {
+  color: var(--rule);
+  user-select: none;
+  font-style: italic;
+}
+
 
 /* ─────────────────────────  HERO  ─────────────────────── */
 .hero {
@@ -411,7 +472,7 @@ img, svg { max-width: 100%; display: block; }
   color: var(--ink);
   font-variation-settings: "opsz" 36, "SOFT" 30, "WONK" 1;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
   line-height: 1.2;
@@ -722,8 +783,60 @@ img, svg { max-width: 100%; display: block; }
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  border: 1px solid var(--rule-faint);
   background: var(--ink);
+  /* thin warm border separating the photo from the cream background */
+  border: 5px solid var(--rule);
+  /* gentle outer shadow — a page lifted off the spread */
+  box-shadow:
+    0 8px 24px -10px rgba(31, 24, 21, 0.25),
+    0 22px 48px -20px rgba(31, 24, 21, 0.18);
+  transition: transform 0.5s cubic-bezier(0.2, 0.65, 0.3, 1),
+              box-shadow 0.5s ease,
+              border-color 0.5s ease;
+}
+.reading-feature:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 14px 32px -12px rgba(31, 24, 21, 0.35),
+    0 30px 60px -24px rgba(31, 24, 21, 0.22);
+}
+.reading-feature:hover .reading-feature-photo img {
+  filter: saturate(85%) contrast(110%) brightness(88%);
+}
+
+/* the turning page — folded top-right corner reveals the back of the page */
+.reading-feature::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: clamp(72px, 9vw, 104px);
+  height: clamp(72px, 9vw, 104px);
+  /* page-back: lighter than the surrounding paper, with a hairline at the crease */
+  background:
+    /* hairline along the diagonal fold edge — the visible "border" */
+    linear-gradient(225deg,
+      transparent 0%,
+      transparent 97.5%,
+      rgba(31, 24, 21, 0.55) 97.5%,
+      rgba(31, 24, 21, 0.55) 100%),
+    /* page-back gradient — light at the curl, slightly warmer toward the crease */
+    linear-gradient(225deg,
+      #FCF8EB 0%,
+      #F4EBD2 60%,
+      #E6D8B5 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  z-index: 5;
+  /* shadow falling onto the photo from the lifted page */
+  filter: drop-shadow(-2px 3px 5px rgba(31, 24, 21, 0.45));
+  transition: width 0.5s cubic-bezier(0.2, 0.65, 0.3, 1),
+              height 0.5s cubic-bezier(0.2, 0.65, 0.3, 1),
+              filter 0.5s ease;
+}
+.reading-feature:hover::before {
+  width: clamp(104px, 13vw, 156px);
+  height: clamp(104px, 13vw, 156px);
+  filter: drop-shadow(-3px 4px 7px rgba(31, 24, 21, 0.5));
 }
 .reading-feature-photo {
   position: absolute;
@@ -733,7 +846,8 @@ img, svg { max-width: 100%; display: block; }
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(70%) contrast(105%) brightness(85%);
+  filter: saturate(70%) contrast(108%) brightness(85%);
+  transition: filter 0.6s ease;
 }
 .reading-feature-overlay {
   position: absolute;
@@ -834,13 +948,11 @@ img, svg { max-width: 100%; display: block; }
   font-size: 1.125rem;
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 1px;
   width: max-content;
-  transition: color 0.3s ease, border-color 0.3s ease;
+  transition: color 0.3s ease;
   font-variation-settings: "opsz" 18, "SOFT" 50, "WONK" 1;
 }
-.colophon-link:hover { color: var(--tea); border-color: var(--tea); }
+.colophon-link:hover { color: var(--tea); }
 .colophon-block:not(.colophon-block--wide) span:last-child {
   font-family: var(--font-body);
   color: var(--ink);
