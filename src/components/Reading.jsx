@@ -2,7 +2,7 @@ import Reveal from './Reveal.jsx';
 import Photo from './Photo.jsx';
 import { useT } from '../i18n/index.jsx';
 
-const SEA_PHOTO = '/sea.jpg';
+const SEA_PHOTO = `${import.meta.env.BASE_URL}sea.jpg`;
 
 export default function Reading() {
   const t = useT();

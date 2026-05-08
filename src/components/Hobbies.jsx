@@ -7,17 +7,18 @@ const COUNTRY_KEYS = [
   'ukraine', 'bulgaria', 'italy', 'france', 'monaco',
 ];
 
+const BASE = import.meta.env.BASE_URL;
 const COUNTRY_SRC = {
-  moldova:        '/moldova.jpg',
-  romania:        '/romania.jpg',
-  hungary:        '/hungary.jpg',
-  czech_republic: '/czech_republic.jpg',
-  poland:         '/poland.jpg',
-  ukraine:        '/ukraine.jpg',
-  bulgaria:       '/bulgaria.jpg',
-  italy:          '/italy.jpg',
-  france:         '/france.jpg',
-  monaco:         '/monaco.jpg',
+  moldova:        `${BASE}moldova.jpg`,
+  romania:        `${BASE}romania.jpg`,
+  hungary:        `${BASE}hungary.jpg`,
+  czech_republic: `${BASE}czech_republic.jpg`,
+  poland:         `${BASE}poland.jpg`,
+  ukraine:        `${BASE}ukraine.jpg`,
+  bulgaria:       `${BASE}bulgaria.jpg`,
+  italy:          `${BASE}italy.jpg`,
+  france:         `${BASE}france.jpg`,
+  monaco:         `${BASE}monaco.jpg`,
 };
 
 const CARD_PHOTOS = {

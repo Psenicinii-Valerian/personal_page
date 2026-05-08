@@ -20,7 +20,7 @@ export default function Hero() {
 
         <Reveal className="hero-portrait-wrap" delay={0.4}>
           <figure className="hero-portrait">
-            <img src="/my_photo.jpg" alt={t.hero.portraitAlt} />
+            <img src={`${import.meta.env.BASE_URL}my_photo.jpg`} alt={t.hero.portraitAlt} />
             <figcaption>{t.hero.portraitCaption}</figcaption>
           </figure>
         </Reveal>
