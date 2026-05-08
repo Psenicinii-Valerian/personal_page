@@ -932,6 +932,7 @@ img, svg { max-width: 100%; display: block; }
 .colophon-block {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.4rem;
 }
 .colophon-block--wide { grid-column: 1 / -1; }
