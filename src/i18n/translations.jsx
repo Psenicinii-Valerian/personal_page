@@ -150,7 +150,7 @@ const en = {
         kind: 'travel',
         title: <>On <em>Travel</em></>,
         alt: 'A wandering road through Europe',
-        body: 'Ten countries, so far — each a different lesson in coffee, language, and pace. Europe is small; one good train ride can change the way you think for a week.',
+        body: 'Ten countries, so far — each a different lesson in coffee, language, and pace. Europe is small; one good train ride can change the way you think and understand things.',
       },
     ],
     album: {
@@ -342,7 +342,7 @@ const ro = {
         kind: 'travel',
         title: <>Despre <em>călătorie</em></>,
         alt: 'Un drum prin Europa',
-        body: 'Zece țări, până acum — fiecare o lecție diferită despre cafea, limbă și ritm. Europa e mică; o călătorie bună cu trenul îți poate schimba felul de a gândi pentru o săptămână.',
+        body: 'Zece țări, până acum — fiecare o lecție diferită despre cafea, limbă și ritm. Europa e mică; o călătorie bună cu trenul îți poate schimba felul de a gândi și a percepe lumea înconjurătoare.',
       },
     ],
     album: {
